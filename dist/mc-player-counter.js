@@ -52,11 +52,23 @@ var PlayerCounter = function () {
 
         var FORMAT_REGEX = /{\b(online|max)\b}/ig;
         var data = JSON.parse(request.responseText);
-        var text = _this.format.replace(FORMAT_REGEX, function (match, group) {
-          return data.players[group];
-        });
+        var displayStatus = _this.element.getAttribute('data-playercounter-status');
 
-        _this.element.innerHTML = text;
+        // Display server status.
+        // offline/online
+        if (displayStatus !== null) {
+          _this.element.innerText = data.status ? 'online' : 'offline';
+          return;
+        }
+
+        // Display online players
+        // Make sure server is online
+        if (data.status) {
+          var text = _this.format.replace(FORMAT_REGEX, function (match, group) {
+            return data.players[group];
+          });
+          _this.element.innerHTML = text;
+        }
       };
       request.open('GET', 'https://mcapi.ca/query/' + this.ip + '/players');
       request.send();

@@ -12,6 +12,9 @@ Displays the number of online players of your Minecraft Server in your site with
 
 In HTML, should be prefixed with `data-playercounter-`. E.g (`data-playercounter-ip`)
 
+You can also display the server status by adding the attribute `data-playercounter-status`. It will display "online" or "offline".  
+See [example](examples/index.html#L11)
+
 ## Demo
 - https://cdn.rawgit.com/leonardosnt/mc-player-counter/master/examples/index.html
 

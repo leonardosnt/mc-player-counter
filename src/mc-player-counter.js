@@ -34,9 +34,21 @@ class PlayerCounter {
 
       const FORMAT_REGEX = /{\b(online|max)\b}/ig;
       const data = JSON.parse(request.responseText);
-      const text = this.format.replace(FORMAT_REGEX, (match, group) => data.players[group]);
+      const displayStatus = this.element.getAttribute('data-playercounter-status');
 
-      this.element.innerHTML = text;
+      // Display server status.
+      // offline/online
+      if (displayStatus !== null) {
+        this.element.innerText = data.status ? 'online' : 'offline';
+        return;
+      }
+
+      // Display online players
+      // Make sure server is online
+      if (data.status) {
+        const text = this.format.replace(FORMAT_REGEX, (match, group) => data.players[group]);
+        this.element.innerHTML = text;
+      }
     };
     request.open('GET', `https://mcapi.ca/query/${this.ip}/players`);
     request.send();
