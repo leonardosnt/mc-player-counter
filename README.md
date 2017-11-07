@@ -26,7 +26,7 @@ HTML
 <html>
   <head>
     <!-- ... -->
-    <script src="https://cdn.rawgit.com/leonardosnt/mc-player-counter/1.1.0/dist/mc-player-counter.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/leonardosnt/mc-player-counter@1.1.0/dist/mc-player-counter.min.js"></script>
   </head>
   <body>
     There are <span data-playercounter-ip="my.server.ip">0</span> players online on my server.
