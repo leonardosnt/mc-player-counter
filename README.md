@@ -34,7 +34,7 @@ HTML
 </html>
 ```
 
-JS
+JS (Optional)
 ```javascript
 new PlayerCounter({
   element: element,
