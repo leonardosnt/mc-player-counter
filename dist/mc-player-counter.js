@@ -70,7 +70,7 @@ var PlayerCounter = function () {
           _this.element.innerHTML = text;
         }
       };
-      request.open('GET', 'https://mcapi.ca/query/' + this.ip + '/players');
+      request.open('GET', 'https://use.gameapis.net/mc/query/players/' + this.ip);
       request.send();
     }
   }]);

@@ -50,13 +50,13 @@ class PlayerCounter {
         this.element.innerHTML = text;
       }
     };
-    request.open('GET', `https://mcapi.ca/query/${this.ip}/players`);
+    request.open('GET', `https://use.gameapis.net/mc/query/players/${this.ip}`);
     request.send();
   }
 }
 
 const onDomLoad = function() {
-  const  elements = document.querySelectorAll('[data-playercounter-ip]');
+  const elements = document.querySelectorAll('[data-playercounter-ip]');
 
   for (let i = 0; i < elements.length; i++) {
     const element = elements[i];
