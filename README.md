@@ -16,7 +16,7 @@ You can also display the server status by adding the attribute `data-playercount
 See [example](examples/index.html#L12)
 
 ## Demo
-- https://cdn.rawgit.com/leonardosnt/mc-player-counter/1.1.0/examples/index.html
+- https://cdn.rawgit.com/leonardosnt/mc-player-counter/1.1.1/examples/index.html
 
 ## Usage:
 
@@ -26,7 +26,7 @@ HTML
 <html>
   <head>
     <!-- ... -->
-    <script src="https://cdn.jsdelivr.net/gh/leonardosnt/mc-player-counter@1.1.0/dist/mc-player-counter.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/leonardosnt/mc-player-counter@1.1.1/dist/mc-player-counter.min.js"></script>
   </head>
   <body>
     There are <span data-playercounter-ip="my.server.ip">0</span> players online on my server.
@@ -46,5 +46,5 @@ new PlayerCounter({
 
 ## License
 
-Copyright (C) 2017 leonardosnt <leonrdsnt@gmail.com>  
+Copyright (C) 2017-2018 leonardosnt <leonrdsnt@gmail.com>  
 Licensed under the MIT License. See LICENSE file in the project root for full license information.
