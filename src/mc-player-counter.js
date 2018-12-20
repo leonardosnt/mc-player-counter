@@ -50,7 +50,7 @@ class PlayerCounter {
         this.element.innerHTML = text;
       }
     };
-    request.open('GET', `https://use.gameapis.net/mc/query/players/${this.ip}`);
+    request.open('GET', `https://mcapi.us/server/status?ip=${this.ip}`);
     request.send();
   }
 }
