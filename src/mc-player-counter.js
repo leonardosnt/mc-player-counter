@@ -1,3 +1,9 @@
+/*!
+ * https://github.com/leonardosnt/mc-player-counter
+ *
+ * Copyright (C) 2017 leonardosnt
+ * Licensed under the MIT License. See LICENSE file in the project root for full license information.
+ */
 class PlayerCounter {
   constructor({ ip, element, format = '{online}' , refreshRate = 5e3 }) {
     if (ip == undefined) {
