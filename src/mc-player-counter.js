@@ -1,10 +1,3 @@
-/*!
- * https://github.com/leonardosnt/mc-player-counter
- *
- * Copyright (C) 2017 leonardosnt
- * Licensed under the MIT License. See LICENSE file in the project root for full license information.
- */
-
 class PlayerCounter {
   constructor({ ip, element, format = '{online}' , refreshRate = 5e3 }) {
     if (ip == undefined) {
@@ -31,26 +24,24 @@ class PlayerCounter {
     const request = new XMLHttpRequest();
     request.onreadystatechange = () => {
       if (request.readyState !== 4 || request.status !== 200) return;
-
-      const FORMAT_REGEX = /{\b(online|max)\b}/ig;
       const data = JSON.parse(request.responseText);
+      //console.log(data.offline ? 'offline' : 'online');
       const displayStatus = this.element.getAttribute('data-playercounter-status');
-
       // Display server status.
       // offline/online
       if (displayStatus !== null) {
-        this.element.innerText = data.status ? 'online' : 'offline';
+        this.element.innerText = data.offline ? 'offline' : 'online';
         return;
       }
 
       // Display online players
       // Make sure server is online
-      if (data.status) {
-        const text = this.format.replace(FORMAT_REGEX, (match, group) => data.players[group]);
+      if (!data.offline) {
+        const text = data.players.online;
         this.element.innerHTML = text;
       }
     };
-    request.open('GET', `https://use.gameapis.net/mc/query/players/${this.ip}`);
+    request.open('GET', `https://api.mcsrvstat.us/1/${this.ip}`);
     request.send();
   }
 }
