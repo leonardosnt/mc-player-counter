@@ -16,7 +16,7 @@ It's also possible to display the server status by adding the attribute `data-pl
 See [example](examples/index.html#L12)
 
 ## Demo
-- https://cdn.rawgit.com/leonardosnt/mc-player-counter/master/examples/index.html
+- https://leonardosnt.github.io/mc-player-counter/examples/
 
 ## Usage:
 
