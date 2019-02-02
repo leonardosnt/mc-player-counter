@@ -6,13 +6,16 @@
  */
 
 class PlayerCounter {
-  constructor({ ip, element, format = '{online}' , refreshRate = 5e3 }) {
-    if (ip == undefined) {
+  constructor({ ip, element, format, refreshRate }) {
+    format = format || '{online}';
+    refreshRate = refreshRate || 60 * 1000;
+
+    if (!ip) {
       throw TypeError('ip cannot be null or undefined');
     }
 
-    if (element == undefined) {
-      throw TypeError('element cannot be null or undefiend');
+    if (!element) {
+      throw TypeError('element cannot be null or undefined');
     }
 
     this.ip = ip;
@@ -33,24 +36,26 @@ class PlayerCounter {
       if (request.readyState !== 4 || request.status !== 200) return;
 
       const FORMAT_REGEX = /{\b(online|max)\b}/ig;
-      const data = JSON.parse(request.responseText);
+      const response = JSON.parse(request.responseText);
       const displayStatus = this.element.getAttribute('data-playercounter-status');
 
       // Display server status.
       // offline/online
       if (displayStatus !== null) {
-        this.element.innerText = data.status ? 'online' : 'offline';
+        this.element.innerText = response.online ? 'online' : 'offline';
         return;
       }
 
       // Display online players
       // Make sure server is online
-      if (data.status) {
-        const text = this.format.replace(FORMAT_REGEX, (match, group) => data.players[group]);
-        this.element.innerHTML = text;
+      if (response.online) {
+        this.element.innerHTML = this.format.replace(FORMAT_REGEX, (_, group) => (
+          // Change 'online' to 'now' to keep backward compatibility
+          response.players[group === 'online' ? 'now' : group])
+        );
       }
     };
-    request.open('GET', `https://use.gameapis.net/mc/query/players/${this.ip}`);
+    request.open('GET', `http://mcapi.us/server/status?ip=${this.ip}`);
     request.send();
   }
 }
@@ -63,9 +68,9 @@ const onDomLoad = function() {
 
     new PlayerCounter({
       element: element,
-      ip: element.getAttribute('data-playercounter-ip') || undefined,
-      format: element.getAttribute('data-playercounter-format') || undefined,
-      refreshRate: element.getAttribute('data-playercounter-refreshRate') || undefined
+      ip: element.getAttribute('data-playercounter-ip'),
+      format: element.getAttribute('data-playercounter-format'),
+      refreshRate: element.getAttribute('data-playercounter-refreshRate')
     });
   }
 };

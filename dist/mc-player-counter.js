@@ -16,19 +16,20 @@ var PlayerCounter = function () {
   function PlayerCounter(_ref) {
     var ip = _ref.ip,
         element = _ref.element,
-        _ref$format = _ref.format,
-        format = _ref$format === undefined ? '{online}' : _ref$format,
-        _ref$refreshRate = _ref.refreshRate,
-        refreshRate = _ref$refreshRate === undefined ? 5e3 : _ref$refreshRate;
+        format = _ref.format,
+        refreshRate = _ref.refreshRate;
 
     _classCallCheck(this, PlayerCounter);
 
-    if (ip == undefined) {
+    format = format || '{online}';
+    refreshRate = refreshRate || 60 * 1000;
+
+    if (!ip) {
       throw TypeError('ip cannot be null or undefined');
     }
 
-    if (element == undefined) {
-      throw TypeError('element cannot be null or undefiend');
+    if (!element) {
+      throw TypeError('element cannot be null or undefined');
     }
 
     this.ip = ip;
@@ -51,26 +52,28 @@ var PlayerCounter = function () {
         if (request.readyState !== 4 || request.status !== 200) return;
 
         var FORMAT_REGEX = /{\b(online|max)\b}/ig;
-        var data = JSON.parse(request.responseText);
+        var response = JSON.parse(request.responseText);
         var displayStatus = _this.element.getAttribute('data-playercounter-status');
 
         // Display server status.
         // offline/online
         if (displayStatus !== null) {
-          _this.element.innerText = data.status ? 'online' : 'offline';
+          _this.element.innerText = response.online ? 'online' : 'offline';
           return;
         }
 
         // Display online players
         // Make sure server is online
-        if (data.status) {
-          var text = _this.format.replace(FORMAT_REGEX, function (match, group) {
-            return data.players[group];
+        if (response.online) {
+          _this.element.innerHTML = _this.format.replace(FORMAT_REGEX, function (_, group) {
+            return (
+              // Change 'online' to 'now' to keep backward compatibility
+              response.players[group === 'online' ? 'now' : group]
+            );
           });
-          _this.element.innerHTML = text;
         }
       };
-      request.open('GET', 'https://use.gameapis.net/mc/query/players/' + this.ip);
+      request.open('GET', 'http://mcapi.us/server/status?ip=' + this.ip);
       request.send();
     }
   }]);
@@ -86,9 +89,9 @@ var onDomLoad = function onDomLoad() {
 
     new PlayerCounter({
       element: element,
-      ip: element.getAttribute('data-playercounter-ip') || undefined,
-      format: element.getAttribute('data-playercounter-format') || undefined,
-      refreshRate: element.getAttribute('data-playercounter-refreshRate') || undefined
+      ip: element.getAttribute('data-playercounter-ip'),
+      format: element.getAttribute('data-playercounter-format'),
+      refreshRate: element.getAttribute('data-playercounter-refreshRate')
     });
   }
 };

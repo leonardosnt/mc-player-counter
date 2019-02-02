@@ -1,22 +1,22 @@
 # mc-player-counter
 
-Displays the number of online players of your Minecraft Server in your site with 2 lines of HTML.
+Displays the number of online players in your Minecraft Server using 2 lines of HTML.
 
 ## Options
-  - refreshRate - Rate that the counter will refresh.
+  - refreshRate - The rate that the counter will refresh (1m by default. Note that https://mcapi.us/ has a 5 minute cache.)
   - format - Format that the counter will be displayed
     - `{max}` - Maximum players
     - `{online}` - Online players
   - ip - Server IP. E.g (`mc.hypixel.net`), with port (`mc.hypixel.net:25565`)
   - element - Element that the counter will be rendered in.
 
-In HTML, should be prefixed with `data-playercounter-`. E.g (`data-playercounter-ip`)
+In HTML, the attributes should be prefixed with `data-playercounter-`. E.g (`data-playercounter-ip`)
 
-You can also display the server status by adding the attribute `data-playercounter-status`. It will display "online" or "offline".  
+It's also possible to display the server status by adding the attribute `data-playercounter-status`. It will display "online" or "offline".
 See [example](examples/index.html#L12)
 
 ## Demo
-- https://cdn.rawgit.com/leonardosnt/mc-player-counter/1.1.0/examples/index.html
+- https://cdn.rawgit.com/leonardosnt/mc-player-counter/master/examples/index.html
 
 ## Usage:
 
@@ -26,7 +26,7 @@ HTML
 <html>
   <head>
     <!-- ... -->
-    <script src="https://cdn.jsdelivr.net/gh/leonardosnt/mc-player-counter@1.1.0/dist/mc-player-counter.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/leonardosnt/mc-player-counter/dist/mc-player-counter.min.js"></script>
   </head>
   <body>
     There are <span data-playercounter-ip="my.server.ip">0</span> players online on my server.
@@ -34,17 +34,17 @@ HTML
 </html>
 ```
 
-JS (Optional)
+JS ("API")
 ```javascript
 new PlayerCounter({
   element: element,
   ip: 'server ip',
   format: '{online}/{max}' // default {online}
-  refreshRate: 1000 // default 5s (5000)
+  refreshRate: 60 * 1000 // default 1m
 });
 ```
 
 ## License
 
-Copyright (C) 2017 leonardosnt <leonrdsnt@gmail.com>  
+Copyright (C) 2017 leonardosnt <leonrdsnt@gmail.com>
 Licensed under the MIT License. See LICENSE file in the project root for full license information.
