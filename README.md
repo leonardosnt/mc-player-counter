@@ -46,5 +46,5 @@ new PlayerCounter({
 
 ## License
 
-Copyright (C) 2017 leonardosnt <leonrdsnt@gmail.com>
+Copyright (C) 2017-2019 leonardosnt <leonrdsnt@gmail.com>  
 Licensed under the MIT License. See LICENSE file in the project root for full license information.
