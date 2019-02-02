@@ -73,7 +73,7 @@ var PlayerCounter = function () {
           });
         }
       };
-      request.open('GET', 'http://mcapi.us/server/status?ip=' + this.ip);
+      request.open('GET', 'https://mcapi.us/server/status?ip=' + this.ip);
       request.send();
     }
   }]);
