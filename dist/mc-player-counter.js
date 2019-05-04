@@ -32,7 +32,10 @@ var PlayerCounter = function () {
       throw TypeError('element cannot be null or undefined');
     }
 
-    this.ip = ip;
+    var ipAddress = ip.split(':');
+    this.ip = ipAddress[0];
+    this.port = ipAddress[1] || '25565';
+
     this.format = format;
     this.element = typeof element === 'string' ? document.querySelector(element) : element;
 
@@ -73,7 +76,7 @@ var PlayerCounter = function () {
           });
         }
       };
-      request.open('GET', 'https://mcapi.us/server/status?ip=' + this.ip);
+      request.open('GET', 'https://mcapi.us/server/status?ip=' + this.ip + '&port=' + this.port);
       request.send();
     }
   }]);
