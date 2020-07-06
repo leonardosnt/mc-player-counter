@@ -1,6 +1,15 @@
 # mc-player-counter
 
-Displays the number of online players in your Minecraft Server using 2 lines of HTML.
+Displays the number of online players in your Minecraft Server on your website using 2 lines of HTML.
+
+The only two lines needed are the script tag and the element that will display the number.
+
+#### Example:
+```html
+<script src="https://cdn.jsdelivr.net/gh/leonardosnt/mc-player-counter/dist/mc-player-counter.min.js"></script>
+
+There are <span data-playercounter-ip="mc.hypixel.net">0</span> players on Hypixel right now.
+```
 
 ## Options
   - refreshRate - The rate that the counter will refresh (1m by default. Note that https://mcapi.us/ has a 5 minute cache.)
@@ -16,9 +25,9 @@ It's also possible to display the server status by adding the attribute `data-pl
 See [example](examples/index.html#L12)
 
 ## Demo
-- https://leonardosnt.github.io/mc-player-counter/examples/
+- https://leonardosnt.github.io/mc-player-counter/examples/ ([Source](https://github.com/leonardosnt/mc-player-counter/blob/master/examples/index.html#L10-L12))
 
-## Usage:
+## Example (including HTML template):
 
 HTML
 ```html
