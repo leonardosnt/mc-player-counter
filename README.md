@@ -2,9 +2,7 @@
 
 Displays the number of online players in your Minecraft Server on your website using 2 lines of HTML.
 
-The only two lines needed are the script tag and the element that will display the number.
-
-#### Example:
+The only two lines needed are the script tag and the element that will display the number. Example:
 ```html
 <script src="https://cdn.jsdelivr.net/gh/leonardosnt/mc-player-counter/dist/mc-player-counter.min.js"></script>
 
@@ -55,5 +53,5 @@ new PlayerCounter({
 
 ## License
 
-Copyright (C) 2017-2019 leonardosnt <leonrdsnt@gmail.com>  
+Copyright (C) 2017-2020 leonardosnt <leonrdsnt@gmail.com>  
 Licensed under the MIT License. See LICENSE file in the project root for full license information.
