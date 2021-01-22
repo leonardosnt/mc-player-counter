@@ -66,9 +66,9 @@ var PlayerCounter = function () {
 
         // Display online players
         // Make sure server is online
-        if (response.online) {	
+        if (response.online) {
           _this.element.innerHTML = _this.format.replace(FORMAT_REGEX, function (_, group) {
-            return response.players_online;
+            return (group === 'online' ? response.players_online : response.max_players);
           });
         }
       };
