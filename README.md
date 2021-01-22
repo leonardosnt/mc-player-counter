@@ -10,7 +10,7 @@ There are <span data-playercounter-ip="mc.hypixel.net">0</span> players on Hypix
 ```
 
 ## Options
-  - refreshRate - The rate that the counter will refresh (1m by default. Note that https://mcapi.us/ has a 5 minute cache.)
+  - refreshRate - The rate that the counter will refresh (1m by default. Note that https://mcstatus.snowdev.com.br/ has a 30 seconds cache.)
   - format - Format that the counter will be displayed
     - `{max}` - Maximum players
     - `{online}` - Online players
@@ -53,5 +53,5 @@ new PlayerCounter({
 
 ## License
 
-Copyright (C) 2017-2020 leonardosnt <leonrdsnt@gmail.com>  
+Copyright (C) 2017-2021 leonardosnt <leonrdsnt@gmail.com>  
 Licensed under the MIT License. See LICENSE file in the project root for full license information.
