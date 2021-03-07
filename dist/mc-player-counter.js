@@ -31,11 +31,9 @@ var PlayerCounter = function () {
     if (!element) {
       throw TypeError('element cannot be null or undefined');
     }
-
-    var ipAddress = ip.split(':');
-    this.ip = ipAddress[0];
-    this.port = ipAddress[1] || '25565';
-
+	
+	this.ip = ip;
+	
     this.format = format;
     this.element = typeof element === 'string' ? document.querySelector(element) : element;
 
@@ -51,6 +49,7 @@ var PlayerCounter = function () {
       // I'll use XMLHttpRequest because it has a better browser support
       // than fetch & Promise.
       var request = new XMLHttpRequest();
+	  
       request.onreadystatechange = function () {
         if (request.readyState !== 4 || request.status !== 200) return;
 
@@ -69,14 +68,12 @@ var PlayerCounter = function () {
         // Make sure server is online
         if (response.online) {
           _this.element.innerHTML = _this.format.replace(FORMAT_REGEX, function (_, group) {
-            return (
-              // Change 'online' to 'now' to keep backward compatibility
-              response.players[group === 'online' ? 'now' : group]
-            );
+            return (group === 'online' ? response.players_online : response.max_players);
           });
         }
       };
-      request.open('GET', 'https://mcapi.us/server/status?ip=' + this.ip + '&port=' + this.port);
+	  
+      request.open('GET', 'https://mcstatus.snowdev.com.br/api/query/v3/' + this.ip);
       request.send();
     }
   }]);
